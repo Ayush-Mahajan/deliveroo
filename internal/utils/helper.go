@@ -17,9 +17,8 @@ func HandleCronFormat(s string, field string) []string {
 	} else if strings.Contains(s, "/") {
 		return handleForwardSlash(s, field)
 	} else {
-		handleRemainingCase(s, field)
+		return handleRemainingCase(s, field)
 	}
-	return []string{}
 }
 
 func handleHyphen(s string) []string {
@@ -46,14 +45,14 @@ func handleForwardSlash(s string, field string) []string {
 		return forwardSlackLoop(count, 12)
 	case "dayOfWeek":
 		return forwardSlackLoop(count, 7)
+	default:
+		return []string{}
 	}
-	return []string{}
 }
 
 func forwardSlackLoop(count int, end int) []string {
-	var timeArray = make([]string, 1)
+	var timeArray = make([]string, 0)
 	timeArray = append(timeArray, "0")
-
 	for i := count; i < 60; i += count {
 		timeArray = append(timeArray, Time[i])
 	}
@@ -73,13 +72,14 @@ func handleRemainingCase(s string, field string) []string {
 			return Time[1:13]
 		case "dayOfWeek":
 			return Time[1:8]
+		default:
+			return []string{}
 		}
 
 	} else {
 		return []string{s}
 	}
 
-	return []string{}
 }
 
 func Print(s string, field []string) {

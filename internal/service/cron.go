@@ -20,11 +20,11 @@ func Cron(args []string) {
 		dayOfWeek := utils.HandleCronFormat(cronSplit[4], "dayOfWeek")
 		command := cronSplit[5]
 
-		utils.Print("minute       ", min)
+		utils.Print("minute        ", min)
 		utils.Print("hour          ", hour)
 		utils.Print("day of month  ", dayOfMonth)
 		utils.Print("month         ", month)
 		utils.Print("day of week   ", dayOfWeek)
-		fmt.Println("command       ", command)
+		fmt.Println("command      ", command)
 	}
 }
